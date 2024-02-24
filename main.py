@@ -48,6 +48,17 @@ async def get_info():
     reg = requests.get('https://clinicaltrials.gov/api/v2/studies')
     return reg.json()
 
+#@app.get("/page_code")
+#async def get_page_code():
+    #x = requests.get('https://clinicaltrials.gov/api/v2/studies')
+    #reg = x.content
+    #reg = json.loads(x.content)
+    #json_reg = json.dumps(reg, sort_keys=True, indent=4)
+    #return bytes(json_reg,'UTF-8')
+    # reg = requests.get('https://clinicaltrials.gov/')
+    # print(reg.status_code)
+
+
 if __name__ == "__main__":
     uvicorn.run("main:app", host="127.0.0.1", port=8080, reload=False,
                 log_level="debug", workers=1)
