@@ -23,7 +23,6 @@ class Studies():
             ps = element.get("protocolSection")
             for key_get in ps:
                 key_get = ps.get(keyword)
-            print(key_get)
             counter = counter + 1
 
         print(counter)
