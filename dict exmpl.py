@@ -14,6 +14,7 @@ class Jsonparser_exersise_1():
                 print("ERROR there is no such key")
             exit()
 
+
 if __name__ == "__main__":
     s = Jsonparser_exersise_1()
-    s.unpuck("dict_for_ex.json", "human", "jso")
+    s.unpuck("dict_for_ex.json", "human", "json")
