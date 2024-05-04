@@ -72,7 +72,7 @@ class IdentificationModule(ProtocolSection):
 
 
 if __name__ == "__main__":
-    s = Studies("data.json")
+    s = Studies("../data.json")
     print(s)
     # f = s.unpuck("data.json")
     #s.unpuck_protocol_section("data.json", "identificationModule")
