@@ -41,3 +41,4 @@ class Studies(Main):
 if __name__ == "__main__":
     s = Main("data.json")
     a = Studies
+    pass
