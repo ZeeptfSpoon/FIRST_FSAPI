@@ -15,8 +15,8 @@ class Main():
         file = json.load(open(file_name))
         if file:
             self.nextPageToken = file.get('nextPageToken')
-            print(self.nextPageToken)
             self.studies = file.get('studies')
+
 
     def unpuck(self, key_index, key_word):
         file = key_index
@@ -25,7 +25,7 @@ class Main():
 
         for key, value in com_data.items():
             print(value)
-class Studies(Main):
+class Studies():
     protocolSection: list
     derivedSection: list
     hasResults: bool
@@ -40,5 +40,7 @@ class Studies(Main):
 
 if __name__ == "__main__":
     s = Main("data.json")
-    a = Studies
+    print(s.studies)
+    # a = Studies
+    # a
     pass
