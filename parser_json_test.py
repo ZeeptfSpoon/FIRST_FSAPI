@@ -1,7 +1,7 @@
 import json
 
 
-class Main():
+class Main:
     """
     json to obj with studies and nextPageToken
 
@@ -15,13 +15,13 @@ class Main():
             self.nextPageToken = file.get('nextPageToken')
             self.studies = file.get('studies')
 
-    def unpuck(self, key_index, key_word):
-        file = key_index
-        com_data = file.get(key_word)
-        print(com_data)
-
-        for key, value in com_data.items():
-            print(value)
+    # def unpuck(self, key_index, key_word):
+    #     file = key_index
+    #     com_data = file.get(key_word)
+    #     print(com_data)
+    #
+    #     for key, value in com_data.items():
+    #         print(value)
 
 
 class Studies:
@@ -29,8 +29,8 @@ class Studies:
     derivedSection: list
     hasResults: bool
 
-    def __init__(self):
-        for element in Main.studies:
+    def __init__(self, main_brunch_name):
+        for element in main_brunch_name.studies:
             if element == "protocolSection":
                 self.protocolSection = element
         # print(self.protocolSection)
@@ -40,6 +40,8 @@ class Studies:
 
 if __name__ == "__main__":
     s = Main("data.json")
-    a = Studies()
+    print(s.nextPageToken)
+    a = Studies(Main)
+    a
     print(a.protocolSection)
     pass
