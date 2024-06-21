@@ -35,7 +35,7 @@ class Studies:
     hasResults: bool
 
     def __init__(self, main_brunch_name):
-        for element in main_brunch_name.studies:
+        for element in main_brunch_name["studies"]:
             if element == "protocolSection":
                 self.protocolSection = element
         # print(self.protocolSection)
