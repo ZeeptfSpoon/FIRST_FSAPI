@@ -1,6 +1,8 @@
 import json
 
 
+
+
 class Main:
     """
     json to obj with studies and nextPageToken
@@ -14,7 +16,6 @@ class Main:
             file = json.load(open(file_name))
         except Exception as e:
             print(e)
-        file = json.load(open(file_name))
         if file:
             self.nextPageToken = file.get('nextPageToken')
             self.studies = file.get('studies')
@@ -45,7 +46,7 @@ class Studies:
 if __name__ == "__main__":
     s = Main("data.json")
     print(s.nextPageToken)
-    a = Studies(Main)
+    a = Studies(s)
     a
     print(a.protocolSection)
     pass
