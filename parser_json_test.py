@@ -10,6 +10,11 @@ class Main:
     nextPageToken: str
 
     def __init__(self, file_name):
+        try:
+            file = json.load(open(file_name))
+        except Exception as e:
+            print(e)
+        return file
         file = json.load(open(file_name))
         if file:
             self.nextPageToken = file.get('nextPageToken')
