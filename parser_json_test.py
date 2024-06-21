@@ -14,7 +14,6 @@ class Main:
             file = json.load(open(file_name))
         except Exception as e:
             print(e)
-        return file
         file = json.load(open(file_name))
         if file:
             self.nextPageToken = file.get('nextPageToken')
