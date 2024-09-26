@@ -118,9 +118,9 @@ if __name__ == "__main__":
     s.fill_studies()
     print(s.list_studies[0])
 
-    # print(s.nextPageToken)
-    # a = Studies(s.studies)
-    # print(a.derivedSection)
-    # pr_section = ProtocolSection(s.a.protocolSection)
-    # print(pr_section.identificationModule)
+    print(s.nextPageToken)
+    a = Studies()
+    print(a.derivedSection)
+    pr_section = ProtocolSection(s.a.protocolSection)
+    print(pr_section.identificationModule)
     pass
