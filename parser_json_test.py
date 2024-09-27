@@ -112,16 +112,16 @@ class IdentificationModule:
         #self.obj = inf_o
         if inf_o.get("nctId"):
             self.nctId = inf_o.get("nctId")
-        if inf_o.get("orgStudyIdInfo"):
-            self.nctId = inf_o.get("orgStudyIdInfo")
+        if inf_o.get("orgStudyIdInfo"):                     # no attribute "orgStudyIdInfo" in 'IdentificationModule'
+            self.orgStudyIdInfo = OrgstudyIdInfo(inf_o.get("orgStudyIdInfo"))
         if inf_o.get("secondaryIdInfos"):
-            self.nctId = inf_o.get("secondaryIdInfos")
+            self.secondaryIdInfos = inf_o.get("secondaryIdInfos")
         if inf_o.get("organization"):
-            self.nctId = inf_o.get("organization")
+            self.organization = inf_o.get("organization")
         if inf_o.get("briefTitle"):
-            self.nctId = inf_o.get("briefTitle")
+            self.briefTitle = inf_o.get("briefTitle")
         if inf_o.get("officialTitle"):
-            self.nctId = inf_o.get("officialTitle")
+            self.officialTitle = inf_o.get("officialTitle")
     # def __str__(self):
     #     print(self.obj)
 
@@ -137,7 +137,7 @@ if __name__ == "__main__":
     s = Main("data.json")
 
     s.fill_studies()
-    print(s.list_studies[0].protocolSection.identificationModule.orgStudyIdInfo)
+    print(s.list_studies[0].protocolSection.identificationModule.orgStudyIdInfo.id)
 
     # a = s.list_studies
     # print(s.nextPageToken)
