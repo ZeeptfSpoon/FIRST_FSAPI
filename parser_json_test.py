@@ -132,6 +132,20 @@ class OrgstudyIdInfo:
         if orgstudy_as_dict.get("id"):
             self.id =  orgstudy_as_dict.get("id")
 
+class SecondaryIdInfos:
+
+    id: object
+    type: object
+    domain: object
+
+    def __init__(self, secondaryIdInfos_as_dict):
+        if secondaryIdInfos_as_dict.get("id"):
+            self.id = secondaryIdInfos_as_dict.get("id")
+        if secondaryIdInfos_as_dict.get("type"):
+            self.type = secondaryIdInfos_as_dict.get("type")
+        if secondaryIdInfos_as_dict.get("domain"):
+            self.domain = secondaryIdInfos_as_dict.get("domain")
+
 
 if __name__ == "__main__":
     s = Main("data.json")
