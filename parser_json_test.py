@@ -51,7 +51,7 @@ class Studies:
         "protocolSection" dict
         "derivedSection" dict
         "hasResults" bool
-        :param studies_json_as_list:
+        :param
         """
         self.protocolSection = protocolSection
         self.derivedSection = derivedSection
@@ -108,17 +108,36 @@ class IdentificationModule:
     briefTitle: object
     officialTitle: object
 
-    def __init__(self, inf_o):
-        self.obj = inf_o
-
+    def __init__(self, inf_o):                          #inf_o is dict from Prot section
+        #self.obj = inf_o
+        if inf_o.get("nctId"):
+            self.nctId = inf_o.get("nctId")
+        if inf_o.get("orgStudyIdInfo"):
+            self.nctId = inf_o.get("orgStudyIdInfo")
+        if inf_o.get("secondaryIdInfos"):
+            self.nctId = inf_o.get("secondaryIdInfos")
+        if inf_o.get("organization"):
+            self.nctId = inf_o.get("organization")
+        if inf_o.get("briefTitle"):
+            self.nctId = inf_o.get("briefTitle")
+        if inf_o.get("officialTitle"):
+            self.nctId = inf_o.get("officialTitle")
     # def __str__(self):
     #     print(self.obj)
+
+class OrgstudyIdInfo:
+    id: object
+
+    def __init__(self, orgstudy_as_dict):
+        if orgstudy_as_dict.get("id"):
+            self.id =  orgstudy_as_dict.get("id")
+
 
 if __name__ == "__main__":
     s = Main("data.json")
 
     s.fill_studies()
-    print(s.list_studies[0].protocolSection.identificationModule)
+    print(s.list_studies[0].protocolSection.identificationModule.orgStudyIdInfo)
 
     # a = s.list_studies
     # print(s.nextPageToken)
