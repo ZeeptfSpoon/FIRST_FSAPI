@@ -111,16 +111,19 @@ class IdentificationModule:
     def __init__(self, inf_o):
         self.obj = inf_o
 
+    # def __str__(self):
+    #     print(self.obj)
 
 if __name__ == "__main__":
     s = Main("data.json")
 
     s.fill_studies()
-    print(s.list_studies[0])
+    print(s.list_studies[0].protocolSection.identificationModule)
 
-    print(s.nextPageToken)
-    a = Studies()
-    print(a.derivedSection)
-    pr_section = ProtocolSection(s.a.protocolSection)
-    print(pr_section.identificationModule)
+    # a = s.list_studies
+    # print(s.nextPageToken)
+    # a =
+    # print(a.derivedSection)
+    #pr_section = ProtocolSection(s.list_studies.protocolSection)
+    # print(pr_section.identificationModule)
     pass
