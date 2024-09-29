@@ -125,6 +125,17 @@ class IdentificationModule:
     # def __str__(self):
     #     print(self.obj)
 
+    def fill_sec_id_info (self):
+        for element in self.secondaryIdInfos:
+            if element.get("id"):
+                element = self.secondaryIdInfos.get("id")
+            if element.get("type"):
+                self.type = self.secondaryIdInfos.get("type")
+            if element.get("domain"):
+                self.domain = self.secondaryIdInfos.get("domain")
+            object_sec_id_info = SecondaryIdInfos(self.id, self.type, self.domain)
+            self.list_sec_id_info.append(object_sec_id_info)
+
 class OrgstudyIdInfo:
     id: object
 
@@ -138,20 +149,17 @@ class SecondaryIdInfos:
     type: object
     domain: object
 
-    def __init__(self, secondaryIdInfos_as_dict):
-        if secondaryIdInfos_as_dict.get("id"):
-            self.id = secondaryIdInfos_as_dict.get("id")
-        if secondaryIdInfos_as_dict.get("type"):
-            self.type = secondaryIdInfos_as_dict.get("type")
-        if secondaryIdInfos_as_dict.get("domain"):
-            self.domain = secondaryIdInfos_as_dict.get("domain")
-
+    def __init__(self, id, type, domain):
+        self.id = id
+        self.type = type
+        self.domain = domain
 
 if __name__ == "__main__":
     s = Main("data.json")
 
     s.fill_studies()
-    print(s.list_studies[0].protocolSection.identificationModule.orgStudyIdInfo.id)
+    s.list_studies[0].protocolSection.identificationModule.fill_sec_id_info()
+    print(s.list_studies[0].protocolSection.identificationModule.list_sec_id_info)
 
     # a = s.list_studies
     # print(s.nextPageToken)
