@@ -160,7 +160,7 @@ if __name__ == "__main__":
 
     s.fill_studies()
     s.list_studies[0].protocolSection.identificationModule.fill_sec_id_info()
-    print(s.list_studies[0].protocolSection.identificationModule.list_sec_id_info[1].domain)
+    print(s.list_studies[0].protocolSection.identificationModule.list_sec_id_info[2].id)
 
     # a = s.list_studies
     # print(s.nextPageToken)
