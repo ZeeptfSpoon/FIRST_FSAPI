@@ -77,8 +77,8 @@ class ProtocolSection:
             """
             activate next pages when Classes are ready 
             """
-        # if protocol_section_json_as_dict.get('statusModule'):
-        #     self.statusModule = StatusModule(protocol_section_json_as_dict.get('statusModule'))
+        if protocol_section_json_as_dict.get('statusModule'):
+            self.statusModule = StatusModule(protocol_section_json_as_dict.get('statusModule'))
         # if protocol_section_json_as_dict.get('sponsorCollaboratorsModule'):
         #     self.sponsorCollaboratorsModule = SponsorCollaboratorsModule(
         #         protocol_section_json_as_dict.get('sponsorCollaboratorsModule'))
@@ -165,13 +165,57 @@ class Organization:
         if org_as_dict.get("class"):
             self.org_class = org_as_dict.get("class")
 
+class StatusModule:
+    statusVerifiedDate: object
+    overallStatus: object
+    expandedAccessInfo: object
+    startDateStruct: object
+    primaryCompletionDateStruct: object
+    completionDateStruct: object
+    studyFirstSubmitDate: object
+    studyFirstSubmitQcDate: object
+    studyFirstPostDateStruct: object
+    lastUpdateSubmitDate: object
+    lastUpdatePostDateStruct: object
+
+    def __init__(self, status_module_dict):
+        if status_module_dict.get("statusVerifiedDate"):
+            self.statusVerifiedDate = status_module_dict.get("statusVerifiedDate")
+        if status_module_dict.get("overallStatus"):
+            self.overallStatus = status_module_dict.get("overallStatus")
+        if status_module_dict.get("expandedAccessInfo"):
+            self.expandedAccessInfo = ExpandedAccessInfo(status_module_dict.get("expandedAccessInfo"))
+        if status_module_dict.get("startDateStruct"):
+            self.startDateStruct = status_module_dict.get("startDateStruct")
+        if status_module_dict.get("primaryCompletionDateStruct"):
+            self.primaryCompletionDateStruct = status_module_dict.get("primaryCompletionDateStruct")
+        if status_module_dict.get("completionDateStruct"):
+            self.completionDateStruct = status_module_dict.get("completionDateStruct")
+        if status_module_dict.get("studyFirstSubmitDate"):
+            self.studyFirstSubmitDate = status_module_dict.get("studyFirstSubmitDate")
+        if status_module_dict.get("studyFirstSubmitQcDate"):
+            self.studyFirstSubmitQcDate = status_module_dict.get("studyFirstSubmitQcDate")
+        if status_module_dict.get("studyFirstPostDateStruct"):
+            self.studyFirstPostDateStruct = status_module_dict.get("studyFirstPostDateStruct")
+        if status_module_dict.get("lastUpdateSubmitDate"):
+            self.lastUpdateSubmitDate = status_module_dict.get("lastUpdateSubmitDate")
+        if status_module_dict.get("lastUpdatePostDateStruct"):
+            self.lastUpdatePostDateStruct = status_module_dict.get("lastUpdatePostDateStruct")
+
+class ExpandedAccessInfo:
+    hasExpandedAccess: object
+
+    def __init__(self, expanded_access_info_as_dict):
+        if expanded_access_info_as_dict.get("hasExpandedAccess"):
+            self.hasExpandedAccess = expanded_access_info_as_dict.get("hasExpandedAccess")
+
 if __name__ == "__main__":
     s = Main("data.json")
 
     s.fill_studies()
     s.list_studies[0].protocolSection.identificationModule.fill_sec_id_info()
     #print(s.list_studies[0].protocolSection.identificationModule.list_sec_id_info[2].id)
-    print(s.list_studies[0].protocolSection.identificationModule.organization.fullName)
+    print(s.list_studies[0].protocolSection.statusModule.expandedAccessInfo.hasExpandedAccess)
 
     # a = s.list_studies
     # print(s.nextPageToken)
