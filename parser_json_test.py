@@ -118,7 +118,7 @@ class IdentificationModule:
         if inf_o.get("secondaryIdInfos"):
             self.secondaryIdInfos = inf_o.get("secondaryIdInfos")
         if inf_o.get("organization"):
-            self.organization = inf_o.get("organization")
+            self.organization = Organization(inf_o.get("organization"))
         if inf_o.get("briefTitle"):
             self.briefTitle = inf_o.get("briefTitle")
         if inf_o.get("officialTitle"):
@@ -155,12 +155,23 @@ class SecondaryIdInfos:
         self.type = type
         self.domain = domain
 
+class Organization:
+    fullName: object
+    org_class: object
+
+    def __init__(self, org_as_dict):
+        if org_as_dict.get("fullName"):
+            self.fullName = org_as_dict.get("fullName")
+        if org_as_dict.get("class"):
+            self.org_class = org_as_dict.get("class")
+
 if __name__ == "__main__":
     s = Main("data.json")
 
     s.fill_studies()
     s.list_studies[0].protocolSection.identificationModule.fill_sec_id_info()
-    print(s.list_studies[0].protocolSection.identificationModule.list_sec_id_info[2].id)
+    #print(s.list_studies[0].protocolSection.identificationModule.list_sec_id_info[2].id)
+    print(s.list_studies[0].protocolSection.identificationModule.organization.fullName)
 
     # a = s.list_studies
     # print(s.nextPageToken)
