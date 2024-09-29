@@ -110,6 +110,7 @@ class IdentificationModule:
 
     def __init__(self, inf_o):                          #inf_o is dict from Prot section
         #self.obj = inf_o
+        self.list_sec_id_info = []
         if inf_o.get("nctId"):
             self.nctId = inf_o.get("nctId")
         if inf_o.get("orgStudyIdInfo"):                     # no attribute "orgStudyIdInfo" in 'IdentificationModule'
@@ -128,12 +129,12 @@ class IdentificationModule:
     def fill_sec_id_info (self):
         for element in self.secondaryIdInfos:
             if element.get("id"):
-                element = self.secondaryIdInfos.get("id")
+                id = element.get("id")
             if element.get("type"):
-                self.type = self.secondaryIdInfos.get("type")
+                type = element.get("type")
             if element.get("domain"):
-                self.domain = self.secondaryIdInfos.get("domain")
-            object_sec_id_info = SecondaryIdInfos(self.id, self.type, self.domain)
+                domain = element.get("domain")
+            object_sec_id_info = SecondaryIdInfos(id, type, domain)
             self.list_sec_id_info.append(object_sec_id_info)
 
 class OrgstudyIdInfo:
