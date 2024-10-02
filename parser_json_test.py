@@ -20,20 +20,15 @@ class Main:
             except Exception as e:
                 print(e)
             if file:
-                if file.get('nextPageToken'):
-                    self.nextPageToken = file.get('nextPageToken')
-                if file.get('studies'):
-                    self.studies = file.get('studies')
+                self.nextPageToken = file.get('nextPageToken')
+                self.studies = file.get('studies')
 
     def fill_studies(self):
         for element in self.studies:
             hasResults = False
-            if element.get("protocolSection"):
-                protocolSection = ProtocolSection(element.get("protocolSection"))
-            if element.get("derivedSection"):
-                derivedSection = element.get("derivedSection")
-            if element.get("hasResults"):
-                hasResults = element.get("hasResults")
+            protocolSection = ProtocolSection(element.get("protocolSection"))
+            derivedSection = element.get("derivedSection")
+            hasResults = element.get("hasResults")
             object_studies = Studies(protocolSection, derivedSection, hasResults)
             self.list_studies.append(object_studies)
 
@@ -72,13 +67,8 @@ class ProtocolSection:
 
     def __init__(self, protocol_section_json_as_dict: dict):
         # for element in protocol_section_json_as_dict:
-        if protocol_section_json_as_dict.get('identificationModule'):
-            self.identificationModule = IdentificationModule(protocol_section_json_as_dict.get('identificationModule'))
-            """
-            activate next pages when Classes are ready 
-            """
-        if protocol_section_json_as_dict.get('statusModule'):
-            self.statusModule = StatusModule(protocol_section_json_as_dict.get('statusModule'))
+        self.identificationModule = IdentificationModule(protocol_section_json_as_dict.get('identificationModule'))
+        self.statusModule = StatusModule(protocol_section_json_as_dict.get('statusModule'))
         # if protocol_section_json_as_dict.get('sponsorCollaboratorsModule'):
         #     self.sponsorCollaboratorsModule = SponsorCollaboratorsModule(
         #         protocol_section_json_as_dict.get('sponsorCollaboratorsModule'))
@@ -111,29 +101,21 @@ class IdentificationModule:
     def __init__(self, inf_o):                          #inf_o is dict from Prot section
         #self.obj = inf_o
         self.list_sec_id_info = []
-        if inf_o.get("nctId"):
-            self.nctId = inf_o.get("nctId")
-        if inf_o.get("orgStudyIdInfo"):
-            self.orgStudyIdInfo = OrgstudyIdInfo(inf_o.get("orgStudyIdInfo"))
-        if inf_o.get("secondaryIdInfos"):
-            self.secondaryIdInfos = inf_o.get("secondaryIdInfos")
-        if inf_o.get("organization"):
-            self.organization = Organization(inf_o.get("organization"))
-        if inf_o.get("briefTitle"):
-            self.briefTitle = inf_o.get("briefTitle")
-        if inf_o.get("officialTitle"):
-            self.officialTitle = inf_o.get("officialTitle")
+        self.nctId = inf_o.get("nctId")
+        self.orgStudyIdInfo = OrgstudyIdInfo(inf_o.get("orgStudyIdInfo"))
+        self.secondaryIdInfos = inf_o.get("secondaryIdInfos")
+        self.organization = Organization(inf_o.get("organization"))
+        self.briefTitle = inf_o.get("briefTitle")
+        self.officialTitle = inf_o.get("officialTitle")
     # def __str__(self):
     #     print(self.obj)
 
     def fill_sec_id_info (self):
         for element in self.secondaryIdInfos:
-            if element.get("id"):
-                id_sec = element.get("id")
-            #if element.get("type"):                       #todo: add mark that not every sec_id_info has type and domain
+
+            id_sec = element.get("id")
             type_sec = element.get("type", None)
-            if element.get("domain"):
-                domain = element.get("domain")
+            domain = element.get("domain", None)
             object_sec_id_info = SecondaryIdInfos(id_sec, type_sec, domain)
             self.list_sec_id_info.append(object_sec_id_info)
 
@@ -160,10 +142,8 @@ class Organization:
     org_class: object
 
     def __init__(self, org_as_dict):
-        if org_as_dict.get("fullName"):
-            self.fullName = org_as_dict.get("fullName")
-        if org_as_dict.get("class"):
-            self.org_class = org_as_dict.get("class")
+        self.fullName = org_as_dict.get("fullName")
+        self.org_class = org_as_dict.get("class")
 
 class StatusModule:
     statusVerifiedDate: object
@@ -179,34 +159,23 @@ class StatusModule:
     lastUpdatePostDateStruct: object
 
     def __init__(self, status_module_dict):
-        if status_module_dict.get("statusVerifiedDate"):
-            self.statusVerifiedDate = status_module_dict.get("statusVerifiedDate")
-        if status_module_dict.get("overallStatus"):
-            self.overallStatus = status_module_dict.get("overallStatus")
-        if status_module_dict.get("expandedAccessInfo"):
-            self.expandedAccessInfo = ExpandedAccessInfo(status_module_dict.get("expandedAccessInfo"))
-        if status_module_dict.get("startDateStruct"):
-            self.startDateStruct = status_module_dict.get("startDateStruct")
-        if status_module_dict.get("primaryCompletionDateStruct"):
-            self.primaryCompletionDateStruct = status_module_dict.get("primaryCompletionDateStruct")
-        if status_module_dict.get("completionDateStruct"):
-            self.completionDateStruct = status_module_dict.get("completionDateStruct")
-        if status_module_dict.get("studyFirstSubmitDate"):
-            self.studyFirstSubmitDate = status_module_dict.get("studyFirstSubmitDate")
-        if status_module_dict.get("studyFirstSubmitQcDate"):
-            self.studyFirstSubmitQcDate = status_module_dict.get("studyFirstSubmitQcDate")
-        if status_module_dict.get("studyFirstPostDateStruct"):
-            self.studyFirstPostDateStruct = status_module_dict.get("studyFirstPostDateStruct")
-        if status_module_dict.get("lastUpdateSubmitDate"):
-            self.lastUpdateSubmitDate = status_module_dict.get("lastUpdateSubmitDate")
-        if status_module_dict.get("lastUpdatePostDateStruct"):
-            self.lastUpdatePostDateStruct = status_module_dict.get("lastUpdatePostDateStruct")
+        self.statusVerifiedDate = status_module_dict.get("statusVerifiedDate")
+        self.overallStatus = status_module_dict.get("overallStatus")
+        self.expandedAccessInfo = ExpandedAccessInfo(status_module_dict.get("expandedAccessInfo"))
+        self.startDateStruct = status_module_dict.get("startDateStruct")
+        self.primaryCompletionDateStruct = status_module_dict.get("primaryCompletionDateStruct")
+        self.completionDateStruct = status_module_dict.get("completionDateStruct")
+        self.studyFirstSubmitDate = status_module_dict.get("studyFirstSubmitDate")
+        self.studyFirstSubmitQcDate = status_module_dict.get("studyFirstSubmitQcDate")
+        self.studyFirstPostDateStruct = status_module_dict.get("studyFirstPostDateStruct")
+        self.lastUpdateSubmitDate = status_module_dict.get("lastUpdateSubmitDate")
+        self.lastUpdatePostDateStruct = status_module_dict.get("lastUpdatePostDateStruct")
 
 class ExpandedAccessInfo:
     hasExpandedAccess: bool
 
     def __init__(self, expanded_access_info_as_dict):
-        #if expanded_access_info_as_dict.get("hasExpandedAccess", ):
+
         self.hasExpandedAccess = expanded_access_info_as_dict.get("hasExpandedAccess", True)
 
 if __name__ == "__main__":
@@ -216,7 +185,7 @@ if __name__ == "__main__":
     s.list_studies[0].protocolSection.identificationModule.fill_sec_id_info()
     b = s.list_studies
 
-    #print(b[0].protocolSection.identificationModule.list_sec_id_info[2].type)
+    print(b[0].protocolSection.identificationModule.list_sec_id_info[0].type_sec)
     print(b[0].protocolSection.statusModule.expandedAccessInfo.hasExpandedAccess)
 
     # a = s.list_studies
