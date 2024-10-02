@@ -113,7 +113,7 @@ class IdentificationModule:
         self.list_sec_id_info = []
         if inf_o.get("nctId"):
             self.nctId = inf_o.get("nctId")
-        if inf_o.get("orgStudyIdInfo"):                     # no attribute "orgStudyIdInfo" in 'IdentificationModule'
+        if inf_o.get("orgStudyIdInfo"):
             self.orgStudyIdInfo = OrgstudyIdInfo(inf_o.get("orgStudyIdInfo"))
         if inf_o.get("secondaryIdInfos"):
             self.secondaryIdInfos = inf_o.get("secondaryIdInfos")
@@ -129,12 +129,12 @@ class IdentificationModule:
     def fill_sec_id_info (self):
         for element in self.secondaryIdInfos:
             if element.get("id"):
-                id = element.get("id")
-            if element.get("type"):                       #todo: add mark that not every sec_id_info has type and domain
-                type = element.get("type")
+                id_sec = element.get("id")
+            #if element.get("type"):                       #todo: add mark that not every sec_id_info has type and domain
+            type_sec = element.get("type", None)
             if element.get("domain"):
                 domain = element.get("domain")
-            object_sec_id_info = SecondaryIdInfos(id, type, domain)
+            object_sec_id_info = SecondaryIdInfos(id_sec, type_sec, domain)
             self.list_sec_id_info.append(object_sec_id_info)
 
 class OrgstudyIdInfo:
@@ -146,13 +146,13 @@ class OrgstudyIdInfo:
 
 class SecondaryIdInfos:
 
-    id: object
-    type: object
+    id_sec: object
+    type_sec: object
     domain: object
 
     def __init__(self, id, type, domain):
-        self.id = id
-        self.type = type
+        self.id_sec = id
+        self.type_sec = type
         self.domain = domain
 
 class Organization:
@@ -203,19 +203,21 @@ class StatusModule:
             self.lastUpdatePostDateStruct = status_module_dict.get("lastUpdatePostDateStruct")
 
 class ExpandedAccessInfo:
-    hasExpandedAccess: object
+    hasExpandedAccess: bool
 
     def __init__(self, expanded_access_info_as_dict):
-        if expanded_access_info_as_dict.get("hasExpandedAccess"):
-            self.hasExpandedAccess = expanded_access_info_as_dict.get("hasExpandedAccess")
+        #if expanded_access_info_as_dict.get("hasExpandedAccess", ):
+        self.hasExpandedAccess = expanded_access_info_as_dict.get("hasExpandedAccess", True)
 
 if __name__ == "__main__":
     s = Main("data.json")
 
     s.fill_studies()
     s.list_studies[0].protocolSection.identificationModule.fill_sec_id_info()
-    #print(s.list_studies[0].protocolSection.identificationModule.list_sec_id_info[2].id)
-    print(s.list_studies[0].protocolSection.statusModule.expandedAccessInfo.hasExpandedAccess)
+    b = s.list_studies
+
+    #print(b[0].protocolSection.identificationModule.list_sec_id_info[2].type)
+    print(b[0].protocolSection.statusModule.expandedAccessInfo.hasExpandedAccess)
 
     # a = s.list_studies
     # print(s.nextPageToken)
