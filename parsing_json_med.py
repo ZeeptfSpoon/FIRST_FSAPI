@@ -1,4 +1,4 @@
-from FIRST_FSAPI.data_classes import study_class
+from data_class_module.study_class import Main
 
 
 
@@ -144,7 +144,7 @@ class PrimaryCompletionDateStruct:
 
 
 if __name__ == "__main__":
-    s = study_class.Main("data.json")
+    s = Main("data.json")
 
     s.fill_studies()
     s.list_studies[0].protocolSection.identificationModule.fill_sec_id_info()
