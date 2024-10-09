@@ -162,7 +162,7 @@ class StatusModule:
         self.statusVerifiedDate = status_module_dict.get("statusVerifiedDate")
         self.overallStatus = status_module_dict.get("overallStatus")
         self.expandedAccessInfo = ExpandedAccessInfo(status_module_dict.get("expandedAccessInfo"))
-        self.startDateStruct = status_module_dict.get("startDateStruct")
+        self.startDateStruct = StartDateStruct(status_module_dict.get("startDateStruct"))
         self.primaryCompletionDateStruct = status_module_dict.get("primaryCompletionDateStruct")
         self.completionDateStruct = status_module_dict.get("completionDateStruct")
         self.studyFirstSubmitDate = status_module_dict.get("studyFirstSubmitDate")
@@ -178,6 +178,22 @@ class ExpandedAccessInfo:
 
         self.hasExpandedAccess = expanded_access_info_as_dict.get("hasExpandedAccess", True)
 
+
+class StartDateStruct:
+    date_start_date: object
+
+    def __init__(self, start_date_as_dict):
+        self.date_start_date = start_date_as_dict.get("date")
+
+class PrimaryCompletionDateStruct:
+    date_prim_comp: object
+    type_prim_comp: object
+
+    def __init__(self, primary_comp_letion_as_dict):
+        self.date_prim_comp = primary_comp_letion_as_dict.get("date")
+        self.type_prim_comp = primary_comp_letion_as_dict.get("type")
+
+
 if __name__ == "__main__":
     s = Main("data.json")
 
@@ -185,8 +201,8 @@ if __name__ == "__main__":
     s.list_studies[0].protocolSection.identificationModule.fill_sec_id_info()
     b = s.list_studies
 
-    print(b[0].protocolSection.identificationModule.list_sec_id_info[0].type_sec)
-    print(b[0].protocolSection.statusModule.expandedAccessInfo.hasExpandedAccess)
+    #print(b[0].protocolSection.identificationModule.list_sec_id_info[0].type_sec)
+    print(b[0].protocolSection.statusModule.startDateStruct.date_start_date)
 
     # a = s.list_studies
     # print(s.nextPageToken)
