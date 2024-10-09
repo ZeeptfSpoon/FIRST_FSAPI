@@ -1,93 +1,42 @@
-import json
+from FIRST_FSAPI.data_classes import study_class
 
 
-class Main:
-    """
-    json to obj with studies as list and nextPageToken as string
 
-    """
-    studies: list
-    nextPageToken: str
-    list_studies: list
-
-    def __init__(self, file_name=None):
-        # container list for class obj studies
-        file = None
-        self.list_studies = []
-        if file_name:
-            try:
-                file = json.load(open(file_name))
-            except Exception as e:
-                print(e)
-            if file:
-                self.nextPageToken = file.get('nextPageToken')
-                self.studies = file.get('studies')
-
-    def fill_studies(self):
-        for element in self.studies:
-            hasResults = False
-            protocolSection = ProtocolSection(element.get("protocolSection"))
-            derivedSection = element.get("derivedSection")
-            hasResults = element.get("hasResults")
-            object_studies = Studies(protocolSection, derivedSection, hasResults)
-            self.list_studies.append(object_studies)
-
-    def fill_protocolSection(self):
-        pass
-
-
-class Studies:
-    protocolSection: object
-    derivedSection: dict
-    hasResults: bool
-
-    def __init__(self, protocolSection, derivedSection, hasResults):
-        """
-        "protocolSection" dict
-        "derivedSection" dict
-        "hasResults" bool
-        :param
-        """
-        self.protocolSection = protocolSection
-        self.derivedSection = derivedSection
-        self.hasResults = hasResults
-
-
-class ProtocolSection:
-    identificationModule: object
-    statusModule: object
-    sponsorCollaboratorsModule: object
-    descriptionModule: object
-    conditionsModule: object
-    designModule: object
-    armsInterventionsModule: object
-    outcomesModule: object
-    eligibilityModule: object
-    contactsLocationsModule: object
-
-    def __init__(self, protocol_section_json_as_dict: dict):
-        # for element in protocol_section_json_as_dict:
-        self.identificationModule = IdentificationModule(protocol_section_json_as_dict.get('identificationModule'))
-        self.statusModule = StatusModule(protocol_section_json_as_dict.get('statusModule'))
-        # if protocol_section_json_as_dict.get('sponsorCollaboratorsModule'):
-        #     self.sponsorCollaboratorsModule = SponsorCollaboratorsModule(
-        #         protocol_section_json_as_dict.get('sponsorCollaboratorsModule'))
-        # if protocol_section_json_as_dict.get('descriptionModule'):
-        #     self.descriptionModule = DescriptionModule(protocol_section_json_as_dict.get('descriptionModule'))
-        # if protocol_section_json_as_dict.get('conditionsModule'):
-        #     self.conditionsModule = ConditionsModule(protocol_section_json_as_dict.get('conditionsModule'))
-        # if protocol_section_json_as_dict.get('designModule'):
-        #     self.designModule = DesignModule(protocol_section_json_as_dict.get('designModule'))
-        # if protocol_section_json_as_dict.get('armsInterventionsModule'):
-        #     self.armsInterventionsModule = ArmsInterventionsModule(
-        #         protocol_section_json_as_dict.get('armsInterventionsModule'))
-        # if protocol_section_json_as_dict.get('outcomesModule'):
-        #     self.outcomesModule = OutcomesModule(protocol_section_json_as_dict.get('outcomesModule'))
-        # if protocol_section_json_as_dict.get('eligibilityModule'):
-        #     self.eligibilityModule = EligibilityModule(protocol_section_json_as_dict.get('eligibilityModule'))
-        # if protocol_section_json_as_dict.get('contactsLocationsModule'):
-        #     self.contactsLocationsModule = ContactsLocationsModule(
-        #         protocol_section_json_as_dict.get('contactsLocationsModule'))
+# class ProtocolSection:
+#     identificationModule: object
+#     statusModule: object
+#     sponsorCollaboratorsModule: object
+#     descriptionModule: object
+#     conditionsModule: object
+#     designModule: object
+#     armsInterventionsModule: object
+#     outcomesModule: object
+#     eligibilityModule: object
+#     contactsLocationsModule: object
+#
+#     def __init__(self, protocol_section_json_as_dict: dict):
+#         # for element in protocol_section_json_as_dict:
+#         self.identificationModule = IdentificationModule(protocol_section_json_as_dict.get('identificationModule'))
+#         self.statusModule = StatusModule(protocol_section_json_as_dict.get('statusModule'))
+#         # if protocol_section_json_as_dict.get('sponsorCollaboratorsModule'):
+#         #     self.sponsorCollaboratorsModule = SponsorCollaboratorsModule(
+#         #         protocol_section_json_as_dict.get('sponsorCollaboratorsModule'))
+#         # if protocol_section_json_as_dict.get('descriptionModule'):
+#         #     self.descriptionModule = DescriptionModule(protocol_section_json_as_dict.get('descriptionModule'))
+#         # if protocol_section_json_as_dict.get('conditionsModule'):
+#         #     self.conditionsModule = ConditionsModule(protocol_section_json_as_dict.get('conditionsModule'))
+#         # if protocol_section_json_as_dict.get('designModule'):
+#         #     self.designModule = DesignModule(protocol_section_json_as_dict.get('designModule'))
+#         # if protocol_section_json_as_dict.get('armsInterventionsModule'):
+#         #     self.armsInterventionsModule = ArmsInterventionsModule(
+#         #         protocol_section_json_as_dict.get('armsInterventionsModule'))
+#         # if protocol_section_json_as_dict.get('outcomesModule'):
+#         #     self.outcomesModule = OutcomesModule(protocol_section_json_as_dict.get('outcomesModule'))
+#         # if protocol_section_json_as_dict.get('eligibilityModule'):
+#         #     self.eligibilityModule = EligibilityModule(protocol_section_json_as_dict.get('eligibilityModule'))
+#         # if protocol_section_json_as_dict.get('contactsLocationsModule'):
+#         #     self.contactsLocationsModule = ContactsLocationsModule(
+#         #         protocol_section_json_as_dict.get('contactsLocationsModule'))
 
 
 class IdentificationModule:
@@ -195,7 +144,7 @@ class PrimaryCompletionDateStruct:
 
 
 if __name__ == "__main__":
-    s = Main("data.json")
+    s = study_class.Main("data.json")
 
     s.fill_studies()
     s.list_studies[0].protocolSection.identificationModule.fill_sec_id_info()
