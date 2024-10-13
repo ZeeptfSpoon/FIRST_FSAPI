@@ -12,10 +12,4 @@ if __name__ == "__main__":
     # print(b[0].protocolSection.statusModule.startDateStruct.date_start_date)
     print(b[0].protocolSection.statusModule.primaryCompletionDateStruct)
 
-    # a = s.list_studies
-    # print(s.nextPageToken)
-    # a =
-    # print(a.derivedSection)
-    #pr_section = ProtocolSection(s.list_studies.protocolSection)
-    # print(pr_section.identificationModule)
     pass
