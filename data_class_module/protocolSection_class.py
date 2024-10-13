@@ -1,6 +1,5 @@
-from FIRST_FSAPI.parsing_json_med import IdentificationModule
-
-from FIRST_FSAPI.parsing_json_med import StatusModule
+from identificationModule_class import IdentificationModule
+from statusModule_class import StatusModule
 
 
 class ProtocolSection:
