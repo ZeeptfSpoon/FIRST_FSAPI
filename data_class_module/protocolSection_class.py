@@ -1,5 +1,5 @@
-from identificationModule_class import IdentificationModule
-from statusModule_class import StatusModule
+from data_class_module.identificationModule_class import IdentificationModule
+from data_class_module.statusModule_class import StatusModule
 
 
 class ProtocolSection:

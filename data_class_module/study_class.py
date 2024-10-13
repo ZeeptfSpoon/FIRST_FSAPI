@@ -1,4 +1,4 @@
-from protocolSection_class import ProtocolSection
+from data_class_module.protocolSection_class import ProtocolSection
 import json
 
 

@@ -1,6 +1,6 @@
-from expandedAcessInfo_class import ExpandedAccessInfo
-from startDateStuct_class import StartDateStruct
-from primaryCompletionDateStruct_class import PrimaryCompletionDateStruct
+from data_class_module.expandedAcessInfo_class import ExpandedAccessInfo
+from data_class_module.startDateStuct_class import StartDateStruct
+from data_class_module.primaryCompletionDateStruct_class import PrimaryCompletionDateStruct
 
 
 

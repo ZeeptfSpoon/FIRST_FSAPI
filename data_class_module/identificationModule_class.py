@@ -1,6 +1,6 @@
-from orgstudyIDInfo_class import OrgstudyIdInfo
-from organization_class import Organization
-from secondaryIdInfos_class import SecondaryIdInfos
+from data_class_module.orgstudyIDInfo_class import OrgstudyIdInfo
+from data_class_module.organization_class import Organization
+from data_class_module.secondaryIdInfos_class import SecondaryIdInfos
 
 
 
