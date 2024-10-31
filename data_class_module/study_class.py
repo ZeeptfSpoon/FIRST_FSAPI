@@ -1,4 +1,4 @@
-from data_class_module.protocolSection_class import ProtocolSection
+from FIRST_FSAPI.data_class_module.protocolSection_class import ProtocolSection
 import json
 
 
@@ -32,9 +32,6 @@ class Main:
             hasResults = element.get("hasResults")
             object_studies = Studies(protocolSection, derivedSection, hasResults)
             self.list_studies.append(object_studies)
-
-    def fill_protocolSection(self):
-        pass
 
 
 class Studies:

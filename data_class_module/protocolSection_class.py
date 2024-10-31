@@ -1,6 +1,6 @@
-from data_class_module.identificationModule_class import IdentificationModule
-from data_class_module.statusModule_class import StatusModule
-
+from FIRST_FSAPI.data_class_module.identificationModule_class import IdentificationModule
+from FIRST_FSAPI.data_class_module.statusModule_class import StatusModule
+from FIRST_FSAPI.data_class_module.sponsorCollaboratorsModule import SponsorCollaboratorsModule
 
 class ProtocolSection:
     identificationModule: object
@@ -18,9 +18,8 @@ class ProtocolSection:
         # for element in protocol_section_json_as_dict:
         self.identificationModule = IdentificationModule(protocol_section_json_as_dict.get('identificationModule'))
         self.statusModule = StatusModule(protocol_section_json_as_dict.get('statusModule'))
-        # if protocol_section_json_as_dict.get('sponsorCollaboratorsModule'):
-        #     self.sponsorCollaboratorsModule = SponsorCollaboratorsModule(
-        #         protocol_section_json_as_dict.get('sponsorCollaboratorsModule'))
+        self.sponsorCollaboratorsModule = SponsorCollaboratorsModule(
+            protocol_section_json_as_dict.get('sponsorCollaboratorsModule'))
         # if protocol_section_json_as_dict.get('descriptionModule'):
         #     self.descriptionModule = DescriptionModule(protocol_section_json_as_dict.get('descriptionModule'))
         # if protocol_section_json_as_dict.get('conditionsModule'):

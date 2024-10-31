@@ -1,7 +1,9 @@
-from data_class_module.expandedAcessInfo_class import ExpandedAccessInfo
-from data_class_module.startDateStuct_class import StartDateStruct
-from data_class_module.primaryCompletionDateStruct_class import PrimaryCompletionDateStruct
-
+from FIRST_FSAPI.data_class_module.expandedAcessInfo_class import ExpandedAccessInfo
+from FIRST_FSAPI.data_class_module.startDateStuct_class import StartDateStruct
+from FIRST_FSAPI.data_class_module.primaryCompletionDateStruct_class import PrimaryCompletionDateStruct
+from FIRST_FSAPI.data_class_module.completionDateStruct import CompletionDateStruct
+from FIRST_FSAPI.data_class_module.studyFirstPostDateStruct import StudyFirstPostDateStruct
+from FIRST_FSAPI.data_class_module.lastUpdatePostDateStruct import LastUpdatePostDateStruct
 
 
 class StatusModule:
@@ -23,9 +25,9 @@ class StatusModule:
         self.expandedAccessInfo = ExpandedAccessInfo(status_module_dict.get("expandedAccessInfo"))
         self.startDateStruct = StartDateStruct(status_module_dict.get("startDateStruct"))
         self.primaryCompletionDateStruct = PrimaryCompletionDateStruct(status_module_dict.get("primaryCompletionDateStruct"))
-        self.completionDateStruct = status_module_dict.get("completionDateStruct")
+        self.completionDateStruct = CompletionDateStruct(status_module_dict.get("completionDateStruct"))
         self.studyFirstSubmitDate = status_module_dict.get("studyFirstSubmitDate")
         self.studyFirstSubmitQcDate = status_module_dict.get("studyFirstSubmitQcDate")
-        self.studyFirstPostDateStruct = status_module_dict.get("studyFirstPostDateStruct")
+        self.studyFirstPostDateStruct = StudyFirstPostDateStruct(status_module_dict.get("studyFirstPostDateStruct"))
         self.lastUpdateSubmitDate = status_module_dict.get("lastUpdateSubmitDate")
-        self.lastUpdatePostDateStruct = status_module_dict.get("lastUpdatePostDateStruct")
+        self.lastUpdatePostDateStruct = LastUpdatePostDateStruct(status_module_dict.get("lastUpdatePostDateStruct"))
